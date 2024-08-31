@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on Gabxo - Hacking Blog</title>
+        <title>Pages on Gabriel Dueck</title>
         <link>https://example.com/page/</link>
-        <description>Recent content in Pages on Gabxo - Hacking Blog</description>
+        <description>Recent content in Pages on Gabriel Dueck</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
@@ -20,7 +20,17 @@
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/about/</guid>
-        <description>&lt;p&gt;Hola&lt;/p&gt;
+        <description>&lt;h4 id=&#34;hola-soy-gabo-un-apasionado-estudiante-de-ciberseguridad-autodidacta-desde-que-descubrí-el-fascinante-mundo-de-la-seguridad-informática-me-he-dedicado-a-aprender-y-explorar-técnicas-avanzadas-para-proteger-sistemas-estudiando-en-plataformas-como-hack-the-box-mi-enfoque-principal-es-en-pruebas-de-penetración&#34;&gt;Hola, soy Gabo, un apasionado estudiante de ciberseguridad autodidacta. Desde que descubrí el fascinante mundo de la seguridad informática, me he dedicado a aprender y explorar técnicas avanzadas para proteger sistemas, estudiando en plataformas como Hack The Box. Mi enfoque principal es en pruebas de penetración.
+&lt;/h4&gt;&lt;h4 id=&#34;habilidades-y-conocimientos&#34;&gt;habilidades y conocimientos
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;conocimientos en seguridad
+informática&lt;/li&gt;
+&lt;li&gt;Trabajo en equipo&lt;/li&gt;
+&lt;li&gt;Analisis de vulnerabilidades&lt;/li&gt;
+&lt;li&gt;ctf (capture the flag)&lt;/li&gt;
+&lt;li&gt;Introduction to Cybersecurity
+Cisco Networking Academy&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
