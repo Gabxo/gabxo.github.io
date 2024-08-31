@@ -35,6 +35,9 @@
     <loc>https://example.com/categories/tryhackme/</loc>
     <lastmod>2024-08-29T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://example.com/about/</loc>
+    <lastmod>2024-08-28T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/categories/hackthebox/</loc>
     <lastmod>2024-08-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -42,6 +45,9 @@
     <lastmod>2024-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/mediun-htb/</loc>
+    <lastmod>2024-08-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/page/</loc>
     <lastmod>2024-08-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/easy-htb/</loc>
@@ -52,12 +58,6 @@
   </url><url>
     <loc>https://example.com/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://example.com/page/</loc>
-    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://example.com/about/</loc>
-    <lastmod>2019-02-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/search/</loc>
   </url>

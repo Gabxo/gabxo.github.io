@@ -6,18 +6,10 @@
         <description>Recent content in Pages on Gabriel Dueck</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Archives</title>
-        <link>https://example.com/archives/</link>
-        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/archives/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About</title>
         <link>https://example.com/about/</link>
-        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/about/</guid>
         <description>&lt;h4 id=&#34;hola-soy-gabo-un-apasionado-estudiante-de-ciberseguridad-autodidacta-desde-que-descubrí-el-fascinante-mundo-de-la-seguridad-informática-me-he-dedicado-a-aprender-y-explorar-técnicas-avanzadas-para-proteger-sistemas-estudiando-en-plataformas-como-hack-the-box-mi-enfoque-principal-es-en-pruebas-de-penetración&#34;&gt;Hola, soy Gabo, un apasionado estudiante de ciberseguridad autodidacta. Desde que descubrí el fascinante mundo de la seguridad informática, me he dedicado a aprender y explorar técnicas avanzadas para proteger sistemas, estudiando en plataformas como Hack The Box. Mi enfoque principal es en pruebas de penetración.
@@ -32,6 +24,14 @@ informática&lt;/li&gt;
 Cisco Networking Academy&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>https://example.com/archives/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/archives/</guid>
+        <description></description>
         </item>
         <item>
         <title>Search</title>
