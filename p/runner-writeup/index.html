@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos fuzzing accedemos a la web, Nada en los puertos 80, 8000 encontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts esa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito exploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198 exploit usamos el exploit de la siguiente manera">
+<title>Runner Writeup</title>
+
+<link rel='canonical' href='https://example.com/p/runner-writeup/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Runner Writeup">
+<meta property='og:description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos fuzzing accedemos a la web, Nada en los puertos 80, 8000 encontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts esa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito exploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198 exploit usamos el exploit de la siguiente manera">
+<meta property='og:url' content='https://example.com/p/runner-writeup/'>
+<meta property='og:site_name' content='Gabxo - Hacking Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Mediun HTB' /><meta property='article:published_time' content='2024-08-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-28T00:00:00&#43;00:00'/><meta property='og:image' content='https://example.com/p/runner-writeup/featured1.png' />
+<meta name="twitter:title" content="Runner Writeup">
+<meta name="twitter:description" content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos fuzzing accedemos a la web, Nada en los puertos 80, 8000 encontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts esa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito exploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198 exploit usamos el exploit de la siguiente manera"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://example.com/p/runner-writeup/featured1.png' />
+  
+
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/gabo_hu4649852041501187022.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧑‍💻</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Gabxo - Hacking Blog</a></h1>
+            <h2 class="site-description">RoadToCBBH</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Gabxo'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://www.linkedin.com/in/gabriel-dueck-950659290/'
+                        target="_blank"
+                        title="Linkedin"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 310 310" xml:space="preserve">
+<g id="XMLID_801_">
+	<path id="XMLID_802_" d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73
+		C77.16,101.969,74.922,99.73,72.16,99.73z"/>
+	<path id="XMLID_803_" d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4
+		c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"/>
+	<path id="XMLID_804_" d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599
+		c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319
+		c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995
+		C310,145.43,300.549,94.761,230.454,94.761z"/>
+</g>
+</svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>Dark Mode</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#nmap">Nmap</a></li>
+            <li><a href="#fuzzing">fuzzing</a></li>
+            <li><a href="#exploit">exploit</a></li>
+            <li><a href="#id_rsa">id_rsa</a></li>
+            <li><a href="#usuarios">usuarios</a></li>
+            <li><a href="#ssh">ssh</a></li>
+            <li><a href="#portainer">portainer</a></li>
+            <li><a href="#exploit-1">exploit</a></li>
+            <li><a href="#contenedor">contenedor</a></li>
+            <li><a href="#consola">consola</a></li>
+            <li><a href="#root">root</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/runner-writeup/">
+                <img src="/p/runner-writeup/featured1_hu17297926243620934203.png"
+                        srcset="/p/runner-writeup/featured1_hu17297926243620934203.png 800w, /p/runner-writeup/featured1_hu10155248973256479110.png 1600w"
+                        width="800" 
+                        height="295" 
+                        loading="lazy"
+                        alt="Featured image of post Runner Writeup" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/htb/" >
+                HTB
+            </a>
+        
+            <a href="/categories/mediun-htb/" >
+                Mediun HTB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/runner-writeup/">Runner Writeup</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 28, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h4 id="nmap">Nmap
+</h4><p>realizamos un escaneo con nmap y encontramos estos puertos abiertos</p>
+<img src="featured2.png" alt="Featured Image">
+<hr>
+<h4 id="fuzzing">fuzzing
+</h4><p>accedemos a la web, Nada en los puertos 80, 8000</p>
+<img src="featured3.png" alt="Featured Image">
+<hr>
+<p>encontramos el subdominio <strong>TeamCity.runner.htb</strong> lo agregaremos al /etc/hosts</p>
+<img src="featured4.png" alt="Featured Image">
+<hr>
+<p>esa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito</p>
+<img src="featured5.png" alt="Featured Image">
+<hr>
+<h4 id="exploit">exploit
+</h4><p>obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198</p>
+<p><a class="link" href="https://github.com/Chocapikk/CVE-2024-27198/blob/main/exploit.py"  target="_blank" rel="noopener"
+    >exploit</a></p>
+<img src="featured6.png" alt="Featured Image">
+<hr>
+<p>usamos el exploit de la siguiente manera</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python exploit.py -u http://teamcity.runner.htb --add-user
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="featured7.png" alt="Featured Image">
+<p>consguimos estas credenciales</p>
+<img src="featured8.png" alt="Featured Image">
+<hr>
+<p>vamos al panel de login anteriormente descubierto y iniciamos sesion con las crendenciales que conseguimos</p>
+<img src="featured9.png" alt="Featured Image">
+<hr>
+<p>nos moveremos a <strong>backup</strong> y descargaremos el <strong>.zip</strong></p>
+<img src="featured10.png" alt="Featured Image">
+<hr>
+<h4 id="id_rsa">id_rsa
+</h4><p>En la enumeración, encontramos que hay id_rsa archivo en la carpeta de copia de seguridad.</p>
+<img src="featured11.png" alt="Featured Image"> 
+<img src="featured12.png" alt="Featured Image">
+<hr>
+<h4 id="usuarios">usuarios
+</h4><p>También encontramos usuarios y hashes en la misma carpeta.</p>
+<img src="featured13.png" alt="Featured Image">
+<p>solo se descifra el hash de Methew</p>
+<img src="featured14.png" alt="Featured Image">
+<p>Hasta ahora tenemos un archivo id_rsa, dos usuarios (Methew, jhon), contraseña para Methew.</p>
+<hr>
+<h4 id="ssh">ssh
+</h4><p>Con id_rsa archivo podemos iniciar sesión con éxito como JHON. Hench obtuvo el acceso inicial</p>
+<img src="featured15.png" alt="Featured Image">
+<img src="featured16.png" alt="Featured Image">
+<hr>
+<p>conseguimos la flag de user</p>
+<img src="featured17.png" alt="Featured Image">
+<hr>
+<p>Al visitar http://127.0.0.1:9000 hay una página de inicio de sesión. En el que podemos iniciar sesión con la contraseña de usuario de Methews</p>
+<img src="featured18.png" alt="Featured Image">
+<hr>
+<h4 id="portainer">portainer
+</h4><p>Nota: Portainer es un software de gestión de contenedores para implementar, solucionar problemas y proteger aplicaciones en casos de uso de nube, centros de datos e IoT industrial.</p>
+<p>usaremos las credenciales previamente conseguidas</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">user matthew password .piper123
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="featured19.png" alt="Featured Image">
+<hr>
+<h4 id="exploit-1">exploit
+</h4><img src="featured20.png" alt="Featured Image">
+<p>También hay 2 imágenes de Docker -[ubuntu:latest, teamcity:latest]</p>
+<img src="featured21.png" alt="Featured Image">
+<p><a class="link" href="https://nitroc.org/en/posts/cve-2024-21626-illustrated/?source=post_page-----103250a9acd3--------------------------------#why-runc-decides-to-use-openat22"  target="_blank" rel="noopener"
+    >exploit</a></p>
+<p>Según esta publicación, tenemos que crear un directorio de trabajo de contenedor para esta ruta → /proc/self/fd/8</p>
+<hr>
+<h4 id="contenedor">contenedor
+</h4><p>Ahora cree un contenedor usando teamcity:latest.</p>
+<img src="featured22.png" alt="Featured Image">
+<img src="featured23.png" alt="Featured Image">
+<img src="featured24.png" alt="Featured Image">
+<hr>
+<h4 id="consola">consola
+</h4><p>Como usuario root, obtenga acceso a la consola</p>
+<img src="featured25.png" alt="Featured Image">
+<hr>
+<h4 id="root">root
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /mnt
+</span></span><span class="line"><span class="cl">cd root 
+</span></span><span class="line"><span class="cl">cat root.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="featured26.png" alt="Featured Image">
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mediun-htb/">Mediun HTB</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Aug 28, 2024 00:00 UTC
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/headless-writeup/">
+        
+        
+            <div class="article-image">
+                <img src="/p/headless-writeup/featured1.f20473144936f5527fecc504a93636a1_hu3604305232551284545.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Headless Writeup"
+                        
+                        data-hash="md5-8gRzFEk29VJ/7MUEqTY2oQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Headless Writeup</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Gabxo - Hacking Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
