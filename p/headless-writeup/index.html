@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="nmap realizamos un escaneo con Nmap y encontramos estos puertos abiertos web accedemos al sitio web no encontramos nada, vamos hacer fuzzing a la web fuzzing realizamos un escaneo con gobuster, usamos el comando 1 gobuster dir -u http://10.10.11.8:5000 -w /usr/share/wordlists/dirb/common.txt encontramos el dominio /support burpsuite rellenamos el campo con cualquier informacion vamos interceptar las peticiones con Burpsuite esta es la peticion con Burpsuite en otra terminal los colocamos en escucha">
 <title>Headless Writeup</title>
 
-<link rel='canonical' href='https://example.com/p/headless-writeup/'>
+<link rel='canonical' href='http://localhost:1313/p/headless-writeup/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Headless Writeup">
 <meta property='og:description' content="nmap realizamos un escaneo con Nmap y encontramos estos puertos abiertos web accedemos al sitio web no encontramos nada, vamos hacer fuzzing a la web fuzzing realizamos un escaneo con gobuster, usamos el comando 1 gobuster dir -u http://10.10.11.8:5000 -w /usr/share/wordlists/dirb/common.txt encontramos el dominio /support burpsuite rellenamos el campo con cualquier informacion vamos interceptar las peticiones con Burpsuite esta es la peticion con Burpsuite en otra terminal los colocamos en escucha">
-<meta property='og:url' content='https://example.com/p/headless-writeup/'>
+<meta property='og:url' content='http://localhost:1313/p/headless-writeup/'>
 <meta property='og:site_name' content='Gabriel Dueck'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='easy HTB' /><meta property='article:published_time' content='2024-08-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-27T00:00:00&#43;00:00'/><meta property='og:image' content='https://example.com/p/headless-writeup/featured1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='easy HTB' /><meta property='article:published_time' content='2024-08-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-27T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/headless-writeup/featured1.png' />
 <meta name="twitter:title" content="Headless Writeup">
 <meta name="twitter:description" content="nmap realizamos un escaneo con Nmap y encontramos estos puertos abiertos web accedemos al sitio web no encontramos nada, vamos hacer fuzzing a la web fuzzing realizamos un escaneo con gobuster, usamos el comando 1 gobuster dir -u http://10.10.11.8:5000 -w /usr/share/wordlists/dirb/common.txt encontramos el dominio /support burpsuite rellenamos el campo con cualquier informacion vamos interceptar las peticiones con Burpsuite esta es la peticion con Burpsuite en otra terminal los colocamos en escucha"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://example.com/p/headless-writeup/featured1.png' />
+    <meta name="twitter:image" content='http://localhost:1313/p/headless-writeup/featured1.png' />
   
 
 
@@ -60,7 +60,7 @@
                     
                     
                         
-                        <img src="/img/gabo_hu6b896672edabc89b9daeba648a32d65b_414754_300x0_resize_box_3.png" width="300"
+                        <img src="/img/gabo_hu4649852041501187022.png" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -190,6 +190,26 @@
         
         
         <li >
+            <a href='/proyects/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>proyects</span>
+            </a>
+        </li>
+        
+        
+        <li >
             <a href='/search/' >
                 
                 
@@ -291,8 +311,8 @@
     <header class="article-header">
         <div class="article-image">
             <a href="/p/headless-writeup/">
-                <img src="/p/headless-writeup/featured1_huc5868eb1be7ecfd1c1186ffe3dec1570_234573_800x0_resize_box_3.png"
-                        srcset="/p/headless-writeup/featured1_huc5868eb1be7ecfd1c1186ffe3dec1570_234573_800x0_resize_box_3.png 800w, /p/headless-writeup/featured1_huc5868eb1be7ecfd1c1186ffe3dec1570_234573_1600x0_resize_box_3.png 1600w"
+                <img src="/p/headless-writeup/featured1_hu5520507896381055350.png"
+                        srcset="/p/headless-writeup/featured1_hu5520507896381055350.png 800w, /p/headless-writeup/featured1_hu3930296766975794016.png 1600w"
                         width="800" 
                         height="287" 
                         loading="lazy"
@@ -575,7 +595,7 @@ pero la cookie esta en base64 vamos a descodearla</p>
         
         
             <div class="article-image">
-                <img src="/p/runner-writeup/featured1.d44cc9ee22a2646da758cf37ed5e6fa6_hu50de22d7a7a4c3a25fa571ff67ac8050_238070_250x150_fill_box_smart1_3.png" 
+                <img src="/p/runner-writeup/featured1.d44cc9ee22a2646da758cf37ed5e6fa6_hu14228589839161000925.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"

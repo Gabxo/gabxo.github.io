@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on Gabriel Dueck</title>
-        <link>https://example.com/page/</link>
+        <link>http://localhost:1313/page/</link>
         <description>Recent content in Pages on Gabriel Dueck</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About</title>
-        <link>https://example.com/about/</link>
+        <link>http://localhost:1313/about/</link>
         <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/about/</guid>
+        <guid>http://localhost:1313/about/</guid>
         <description>&lt;h4 id=&#34;hola-soy-gabo-un-apasionado-estudiante-de-ciberseguridad-autodidacta-desde-que-descubrí-el-fascinante-mundo-de-la-seguridad-informática-me-he-dedicado-a-aprender-y-explorar-técnicas-avanzadas-para-proteger-sistemas-estudiando-en-plataformas-como-hack-the-box-mi-enfoque-principal-es-en-pruebas-de-penetración&#34;&gt;Hola, soy Gabo, un apasionado estudiante de ciberseguridad autodidacta. Desde que descubrí el fascinante mundo de la seguridad informática, me he dedicado a aprender y explorar técnicas avanzadas para proteger sistemas, estudiando en plataformas como Hack The Box. Mi enfoque principal es en pruebas de penetración.
 &lt;/h4&gt;&lt;h4 id=&#34;habilidades-y-conocimientos&#34;&gt;habilidades y conocimientos
 &lt;/h4&gt;&lt;ul&gt;
@@ -27,18 +27,26 @@ Cisco Networking Academy&lt;/li&gt;
         </item>
         <item>
         <title>Archives</title>
-        <link>https://example.com/archives/</link>
+        <link>http://localhost:1313/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/archives/</guid>
+        <guid>http://localhost:1313/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>proyects</title>
+        <link>http://localhost:1313/proyects/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/proyects/</guid>
         <description></description>
         </item>
         <item>
         <title>Search</title>
-        <link>https://example.com/search/</link>
+        <link>http://localhost:1313/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/search/</guid>
+        <guid>http://localhost:1313/search/</guid>
         <description></description>
         </item>
         

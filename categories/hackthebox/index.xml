@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>HackTheBox on Gabriel Dueck</title>
-        <link>https://example.com/categories/hackthebox/</link>
+        <link>http://localhost:1313/categories/hackthebox/</link>
         <description>Recent content in HackTheBox on Gabriel Dueck</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/hackthebox/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 28 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/hackthebox/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Runner Writeup</title>
-        <link>https://example.com/p/runner-writeup/</link>
+        <link>http://localhost:1313/p/runner-writeup/</link>
         <pubDate>Wed, 28 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/runner-writeup/</guid>
-        <description>&lt;img src="https://example.com/p/runner-writeup/featured1.png" alt="Featured image of post Runner Writeup" /&gt;&lt;h4 id=&#34;nmap&#34;&gt;Nmap
+        <guid>http://localhost:1313/p/runner-writeup/</guid>
+        <description>&lt;img src="http://localhost:1313/p/runner-writeup/featured1.png" alt="Featured image of post Runner Writeup" /&gt;&lt;h4 id=&#34;nmap&#34;&gt;Nmap
 &lt;/h4&gt;&lt;p&gt;realizamos un escaneo con nmap y encontramos estos puertos abiertos&lt;/p&gt;
 &lt;img src=&#34;featured2.png&#34; alt=&#34;Featured Image&#34;&gt;
 &lt;hr&gt;
@@ -123,11 +123,11 @@
         </item>
         <item>
         <title>Headless Writeup</title>
-        <link>https://example.com/p/headless-writeup/</link>
+        <link>http://localhost:1313/p/headless-writeup/</link>
         <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/headless-writeup/</guid>
-        <description>&lt;img src="https://example.com/p/headless-writeup/featured1.png" alt="Featured image of post Headless Writeup" /&gt;&lt;h3 id=&#34;nmap&#34;&gt;nmap
+        <guid>http://localhost:1313/p/headless-writeup/</guid>
+        <description>&lt;img src="http://localhost:1313/p/headless-writeup/featured1.png" alt="Featured image of post Headless Writeup" /&gt;&lt;h3 id=&#34;nmap&#34;&gt;nmap
 &lt;/h3&gt;&lt;p&gt;realizamos un escaneo con Nmap y encontramos estos puertos abiertos&lt;/p&gt;
 &lt;img src=&#34;featured2.png&#34; alt=&#34;Featured Image&#34;&gt;
 &lt;hr&gt;
