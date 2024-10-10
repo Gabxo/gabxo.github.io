@@ -14,7 +14,6 @@
         <guid>http://localhost:1313/p/runner-writeup/</guid>
         <description>&lt;img src="http://localhost:1313/p/runner-writeup/featured1.png" alt="Featured image of post Runner Writeup" /&gt;&lt;h4 id=&#34;nmap&#34;&gt;Nmap
 &lt;/h4&gt;&lt;p&gt;realizamos un escaneo con nmap y encontramos estos puertos abiertos&lt;/p&gt;
-&lt;p&gt;doge come pone&lt;/p&gt;
 &lt;img src=&#34;featured2.png&#34; alt=&#34;Featured Image&#34;&gt;
 &lt;hr&gt;
 &lt;h4 id=&#34;fuzzing&#34;&gt;fuzzing

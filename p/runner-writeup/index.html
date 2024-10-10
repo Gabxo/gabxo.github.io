@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\ndoge come pone\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\nexploit\nusamos el exploit de la siguiente manera\n">
 <title>Runner Writeup</title>
 
 <link rel='canonical' href='http://localhost:1313/p/runner-writeup/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="Runner Writeup">
-<meta property='og:description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\ndoge come pone\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\n">
+<meta property='og:description' content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\nexploit\nusamos el exploit de la siguiente manera\n">
 <meta property='og:url' content='http://localhost:1313/p/runner-writeup/'>
 <meta property='og:site_name' content='Gabriel Dueck'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Mediun HTB' /><meta property='article:published_time' content='2024-08-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-28T00:00:00&#43;00:00'/><meta property='og:image' content='http://localhost:1313/p/runner-writeup/featured1.png' />
 <meta name="twitter:title" content="Runner Writeup">
-<meta name="twitter:description" content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\ndoge come pone\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Nmap realizamos un escaneo con nmap y encontramos estos puertos abiertos\nfuzzing accedemos a la web, Nada en los puertos 80, 8000\nencontramos el subdominio TeamCity.runner.htb lo agregaremos al /etc/hosts\nesa es una página de inicio de sesión. Entonces, intenté buscar las credenciales predeterminadas, pero no tuvimos éxito\nexploit obtuve un exploit para la versión 2023.11.4 de TeamCity. TeamCity Admin Account Creation CVE-2024-27198\nexploit\nusamos el exploit de la siguiente manera\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='http://localhost:1313/p/runner-writeup/featured1.png' />
     </head>
     <body class="
@@ -391,7 +391,6 @@
     
     <h4 id="nmap">Nmap
 </h4><p>realizamos un escaneo con nmap y encontramos estos puertos abiertos</p>
-<p>doge come pone</p>
 <img src="featured2.png" alt="Featured Image">
 <hr>
 <h4 id="fuzzing">fuzzing
